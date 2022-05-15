@@ -1,5 +1,6 @@
 import './App.css';
 import {useEffect, useState} from 'react';
+import debounce from './helpers/debounce';
 
 function App({resolvers}) {
   const [note, setNote] = useState(null);
@@ -14,8 +15,14 @@ function App({resolvers}) {
         });
   };
 
+  const updateNote = debounce(() => {
+    resolvers.putNote(note)
+        .then((data) => console.log(data));
+  }, 1000, true);
+
   const onChange = (event) => {
-    setNote((note) => ({...note, text: event.target.value}));
+    setNote((note) => ({...nтote, text: event.target.value}));
+    updateNote();
   };
 
   useEffect(() => {
