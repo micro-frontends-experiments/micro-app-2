@@ -4,10 +4,10 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-window.renderMicroApp2 = (containerId, history, userId) => {
+window.renderMicroApp2 = (containerId, props) => {
   console.log('renderMicroApp2');
   ReactDOM.render(
-      <App history={history} userId={userId}/>,
+      <App {...props}/>,
       document.getElementById(containerId),
   );
 };
